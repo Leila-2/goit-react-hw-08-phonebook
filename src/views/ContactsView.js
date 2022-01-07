@@ -3,7 +3,7 @@ import Form from "../components/Form/Form";
 import Filter from "../components/Filter/Filter";
 import Contacts from "../components/Contacts/Contacts";
 
-export default function () {
+export default function ContactsView() {
   return (
     <Section>
       <Form />

@@ -1,6 +1,3 @@
-// import Form from "./components/Form/Form";
-// import Filter from "./components/Filter/Filter";
-// import Contacts from "./components/Contacts/Contacts";
 import AppBar from "./components/AppBar";
 import { connect } from "react-redux";
 import { addContact } from "./redux/contacts-actions";
@@ -9,13 +6,13 @@ import Home from "./views/Home";
 import LoginView from "./views/LoginView";
 import RegisterView from "./views/RegisterView";
 import { Routes, Route } from "react-router-dom";
-// import RegistrationForm from "./components/Registration";
-// import LogInForm from "./components/LogIn";
 
 function App() {
   return (
     <div className="App">
-      <header>{/* <AppBar /> */}</header>
+      <header>
+        <AppBar />
+      </header>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<RegisterView />} />
