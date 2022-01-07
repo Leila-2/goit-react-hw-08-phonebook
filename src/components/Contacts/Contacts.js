@@ -3,14 +3,15 @@ import { Section } from "../Section/Section";
 import { ContactsItem } from "./ContactsItem";
 import s from "./Contacts.module.css";
 import { connect } from "react-redux";
-import { deleteContact } from "../../redux/contacts-actions";
+import { deleteContact } from "../../redux/contacts/contacts-operations";
+import { getVisibleContacts } from "../../redux/contacts/contacts-selectors";
 
 import PropTypes from "prop-types";
 const Contacts = ({ contacts, deleteHandler }) => (
-  <Section title="Contacts">
+  <Section title="Ваши контакты">
     <ul className={s.list}>
       {contacts.length === 0 ? (
-        <h3>Please add contact</h3>
+        <h3>У Вас пока нет контактов 😵‍</h3>
       ) : (
         contacts.map(({ name, id, number }) => (
           <ContactsItem
@@ -32,16 +33,16 @@ Contacts.propTypes = {
   number: PropTypes.string,
 };
 
-const getVisibleContacts = (allContacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
+// const getVisibleContacts = (allContacts, filter) => {
+//   const normalizedFilter = filter.toLowerCase();
 
-  return allContacts.filter(({ name }) =>
-    name.toLowerCase().includes(normalizedFilter)
-  );
-};
+//   return allContacts.filter(({ name }) =>
+//     name.toLowerCase().includes(normalizedFilter)
+//   );
+// };
 
-const mapStateToProps = ({ contacts: { items, filter } }) => ({
-  contacts: getVisibleContacts(items, filter),
+const mapStateToProps = (state) => ({
+  contacts: getVisibleContacts(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

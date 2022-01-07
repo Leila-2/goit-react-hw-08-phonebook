@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { changeFilter } from "../../redux/contacts-actions";
+import { changeFilter } from "../../redux/contacts/contacts-actions";
 
 import { Section } from "../Section/Section";
 const Filter = ({ value, onChange }) => (
-  <Section>
+  <Section title="Ищите контакт в один клик!">
     <label htmlFor="search">
-      <h2>Find your contact by name</h2>
-
+      <p>Введите имя вашго контакта</p>
       <input id="search" type="text" value={value} onChange={onChange}></input>
     </label>
   </Section>

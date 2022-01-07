@@ -9,8 +9,9 @@ const styles = {
     fontWeight: 700,
     color: "#2A363B",
   },
-  activeLink: {
+  active: {
     color: "#E84A5F",
+    fontWeight: 20,
   },
 };
 
@@ -19,15 +20,15 @@ export default function AuthNav() {
     <div>
       <NavLink
         to="/register"
-        style={styles.link}
-        //activeStyle={styles.activeLink}
+        //style={styles.link}
+        className="link"
       >
         Регистрация
       </NavLink>
       <NavLink
         to="/login"
-        style={styles.link}
-        //activeStyle={styles.activeLink}
+        //style={styles.link}
+        className="link"
       >
         Логин
       </NavLink>

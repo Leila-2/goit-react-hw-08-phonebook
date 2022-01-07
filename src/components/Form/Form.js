@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Section } from "../Section/Section";
 import s from "../Form/Form.module.css";
 import { connect, useSelector } from "react-redux";
-import { addContact } from "../../redux/contacts-actions";
+import { addContact } from "../../redux/contacts/contacts-operations";
 
 function Form({ onSubmit }) {
   const [number, setNumber] = useState("");
@@ -39,7 +39,7 @@ function Form({ onSubmit }) {
   };
 
   return (
-    <Section title="Phonebook">
+    <Section title="Введите ваш новый контакт🧚🏼‍♂️">
       <form className={s.form} onSubmit={handleSubmit}>
         <label htmlFor="input-name">Name</label>
         <input
