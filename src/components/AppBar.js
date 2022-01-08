@@ -3,9 +3,9 @@ import React from "react";
 import AuthNav from "./AuthNav";
 import Navigation from "./Navigation";
 import UserMenu from "./UserMenu/UserMenu";
-import authSelectors from "../redux/auth/auth-selector";
+import { getIsLoggedIn } from "../redux/auth/auth-selector";
 
-//console.log(authSelectors.getIsLoggedIn)
+//console.log(getIsLoggedIn)
 const styles = {
   header: {
     display: "flex",
@@ -16,7 +16,7 @@ const styles = {
 };
 
 export default function AppBar() {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
   // console.log(isLoggedIn)
   return (

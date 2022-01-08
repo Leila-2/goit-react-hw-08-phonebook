@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import operations from "../../redux/auth/auth-operation";
-import authSelectors from "../../redux/auth/auth-selector";
+import { getUsername } from "../../redux/auth/auth-selector";
 import defaultAvatar from "./default-avatar.png";
 
 const styles = {
@@ -18,7 +18,7 @@ const styles = {
 };
 export default function UserMenu() {
   const dispatch = useDispatch();
-  const name = useSelector(authSelectors.getUsername);
+  const name = useSelector(getUsername);
   const avatar = defaultAvatar;
   return (
     <div style={styles.container}>

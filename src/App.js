@@ -1,5 +1,5 @@
 import AppBar from "./components/AppBar";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 //import { addContact } from "./redux/contacts-actions";
 import ContactsView from "./views/ContactsView";
 import Home from "./views/Home";
@@ -12,7 +12,7 @@ import operations from "./redux/auth/auth-operation";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { css } from "@emotion/react";
-
+import { GeneralAccess, RequireAuth } from "./components/CheckRoute";
 import { useSelector } from "react-redux";
 import { isFetchingUser, checkToken } from "./redux/auth/auth-selector";
 
@@ -25,23 +25,56 @@ const override = css`
 
 function App() {
   const dispatch = useDispatch();
+  const userLoading = useSelector(isFetchingUser);
+  const userToken = useSelector(checkToken);
 
   useEffect(() => {
-    dispatch(operations.fetchCurrentUser());
+    if (userToken === null) {
+      return;
+    } else {
+      dispatch(operations.fetchCurrentUser());
+    }
   }, [dispatch]);
 
   return (
     <div className="App">
-      <AppBar />
+      {!userLoading && (
+        <>
+          <AppBar />
 
-      <Suspense fallback={<ClipLoader css={override} size={200} />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<RegisterView />} />
-          <Route path="/login" element={<LoginView />} />
-          <Route path="/contacts" element={<ContactsView />} />
-        </Routes>
-      </Suspense>
+          <Suspense fallback={<ClipLoader css={override} size={200} />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+
+              <Route
+                path="/register"
+                element={
+                  <GeneralAccess redirectTo="/">
+                    <RegisterView />
+                  </GeneralAccess>
+                }
+              />
+
+              <Route
+                path="/login"
+                element={
+                  <GeneralAccess redirectTo="/">
+                    <LoginView />
+                  </GeneralAccess>
+                }
+              />
+              <Route
+                path="/contacts"
+                element={
+                  <RequireAuth redirectTo="/login">
+                    <ContactsView />
+                  </RequireAuth>
+                }
+              />
+            </Routes>
+          </Suspense>
+        </>
+      )}
     </div>
   );
 }
