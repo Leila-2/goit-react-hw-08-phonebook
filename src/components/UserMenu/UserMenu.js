@@ -23,7 +23,8 @@ export default function UserMenu() {
   return (
     <div style={styles.container}>
       <img src={avatar} alt="" width="32" style={styles.avatar} />
-      <span>Добро пожаловать,{name}!</span>
+      <span>Добро пожаловать, {name}!</span>
+
       <button type="button" onClick={() => dispatch(operations.logOut())}>
         Выйти
       </button>
